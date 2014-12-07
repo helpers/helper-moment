@@ -41,8 +41,9 @@ describe('date', function () {
 
   it('should work as a handlebars helper:', function () {
     handlebars.registerHelper('moment', moment);
-    handlebars.compile('{{moment date "MM"}}')({date: new Date()}).should.eql(moment("MM"));
-    handlebars.compile('{{moment date "MMMM DD, YYYY"}}')({date: new Date()}).should.eql(moment("MMMM DD, YYYY"));
-    handlebars.compile('{{moment date formatDate}}')({formatDate: "MMMM DD, YYYY", date: new Date()}).should.eql(moment("MMMM DD, YYYY"));
+
+    handlebars.compile('{{moment ctx "MM"}}')({ctx: new Date()}).should.eql(moment("MM"));
+    handlebars.compile('{{moment ctx "MMMM DD, YYYY"}}')({ctx: new Date()}).should.eql(moment("MMMM DD, YYYY"));
+    handlebars.compile('{{moment ctx formatDate}}')({formatDate: "MMMM DD, YYYY", ctx: new Date()}).should.eql(moment("MMMM DD, YYYY"));
   });
 });
