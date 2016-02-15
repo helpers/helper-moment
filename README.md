@@ -123,7 +123,7 @@ With Verb (lo-dash, with special delimiters to avoid delimiter collision in mark
 
 
 ## Contributing
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/helper-moment/issues)
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/helpers/helper-moment/issues)
 
 To request or contribute a helper to the [github.com/helpers][helpers] org, please read [this contributing guide][guide] to get started.
 
