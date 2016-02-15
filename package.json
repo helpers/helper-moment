@@ -2,21 +2,21 @@
   "name": "helper-moment",
   "description": "Template helper for formatting dates with moment.js. Works with Handlebars, Lo-Dash or any template engine that supports helper functions.",
   "version": "0.1.0",
-  "homepage": "https://github.com/jonschlinkert/helper-moment",
+  "homepage": "https://github.com/helpers/helper-moment",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jonschlinkert/helper-moment.git"
+    "url": "git://github.com/helpers/helper-moment.git"
   },
   "bugs": {
-    "url": "https://github.com/jonschlinkert/helper-moment/issues"
+    "url": "https://github.com/helpers/helper-moment/issues"
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/jonschlinkert/helper-moment/blob/master/LICENSE-MIT"
+    "url": "https://github.com/helpers/helper-moment/blob/master/LICENSE-MIT"
   },
   "main": "index.js",
   "engines": {

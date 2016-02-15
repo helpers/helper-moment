@@ -1,5 +1,5 @@
 /*!
- * helper-moment <https://github.com/jonschlinkert/helper-moment>
+ * helper-moment <https://github.com/helpers/helper-moment>
  *
  * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT license.
