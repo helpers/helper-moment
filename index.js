@@ -1,5 +1,5 @@
 /*!
- * helper-moment <https://github.com/helpers/helper-moment>
+ * helper-moment <https://github.com/jonschlinkert/helper-moment>
  *
  * Copyright (c) 2014 Jon Schlinkert, contributors.
  * Licensed under the MIT license.
@@ -19,16 +19,15 @@ var extend = require('extend-shallow');
  * Expose moment `helper`
  */
 
-module.exports = function momentHelper(str, pattern) {
+module.exports = function momentHelper(str, pattern, opts) {
   // if no args are passed, return a formatted date
   if (str == null && pattern == null) {
     moment.locale('en');
     return moment().format('MMMM DD, YYYY');
   }
 
-  var opts = extend({lang: 'en'}, str, pattern);
+  var opts = extend({lang: opts.lang||'en'}, str, pattern);
   extend(opts, opts.hash);
-
   // set the language to use
   moment.locale(opts.lang);
   if (opts.hash) {
