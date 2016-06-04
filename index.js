@@ -27,8 +27,8 @@ module.exports = function momentHelper(str, pattern, options) {
   }
 
   options = options || {};
-  var lang = options.lang || 'en';
-  var opts = extend({lang: lang}, str, pattern);
+  options.lang = options.lang || 'en';
+  var opts = extend(options, str, pattern);
   extend(opts, opts.hash);
   // set the language to use
   moment.locale(opts.lang);
