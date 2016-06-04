@@ -19,16 +19,17 @@ var extend = require('extend-shallow');
  * Expose moment `helper`
  */
 
-module.exports = function momentHelper(str, pattern) {
+module.exports = function momentHelper(str, pattern, options) {
   // if no args are passed, return a formatted date
   if (str == null && pattern == null) {
     moment.locale('en');
     return moment().format('MMMM DD, YYYY');
   }
 
-  var opts = extend({lang: 'en'}, str, pattern);
+  options = options || {};
+  options.lang = options.lang || 'en';
+  var opts = extend(options, str, pattern);
   extend(opts, opts.hash);
-
   // set the language to use
   moment.locale(opts.lang);
   if (opts.hash) {
