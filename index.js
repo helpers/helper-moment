@@ -1,15 +1,10 @@
 /*!
  * helper-moment <https://github.com/helpers/helper-moment>
- *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * Copyright (c) 2014-2016 Jon Schlinkert
  * Licensed under the MIT license.
  */
 
 'use strict';
-
-/**
- * Module dependences
- */
 
 var typeOf = require('kind-of');
 var moment = require('moment');
@@ -19,21 +14,23 @@ var extend = require('extend-shallow');
  * Expose moment `helper`
  */
 
-module.exports = function momentHelper(str, pattern) {
+module.exports = function momentHelper(str, pattern, options) {
   // if no args are passed, return a formatted date
-  if (str == null && pattern == null) {
+  if (!str && !pattern) {
     moment.locale('en');
     return moment().format('MMMM DD, YYYY');
   }
 
-  var opts = extend({lang: 'en'}, str, pattern);
-  extend(opts, opts.hash);
+  // we can extend str and pattern since `extend` ignores strings
+  // and they might be options/context objects
+  var opts = extend({locale: 'en'}, str, pattern, options);
+  opts = extend({}, opts, opts.hash);
 
   // set the language to use
-  moment.locale(opts.lang);
+  moment.locale(opts.lang || opts.locale);
   if (opts.hash) {
     if (opts.context) {
-      extend(opts.hash, opts.context);
+      opts.hash = extend({}, opts.hash, opts.context);
     }
 
     var date = moment(str);
@@ -46,8 +43,7 @@ module.exports = function momentHelper(str, pattern) {
     }
   }
 
-
-  if (typeOf(str) === 'object') {
+  if (typeOf(str) === 'object' && typeof pattern === 'string') {
     return moment(str).format(pattern);
   }
 
