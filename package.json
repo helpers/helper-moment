@@ -3,39 +3,80 @@
   "description": "Template helper for formatting dates with moment.js. Works with Handlebars, Lo-Dash or any template engine that supports helper functions.",
   "version": "0.1.0",
   "homepage": "https://github.com/helpers/helper-moment",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/helpers/helper-moment.git"
-  },
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "helpers/helper-moment",
   "bugs": {
     "url": "https://github.com/helpers/helper-moment/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/helpers/helper-moment/blob/master/LICENSE-MIT"
-  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha"
+  },
+  "dependencies": {
+    "extend-shallow": "^2.0.1",
+    "kind-of": "^3.1.0",
+    "moment": "^2.17.1"
   },
   "devDependencies": {
-    "date.js": "^0.2.0",
-    "handlebars": "^2.0.0",
-    "lodash": "^2.4.1",
-    "mocha": "*",
-    "should": "*"
+    "date.js": "^0.3.1",
+    "gulp-format-md": "^0.1.11",
+    "handlebars": "^4.0.6",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0"
   },
-  "keywords": [],
-  "dependencies": {
-    "extend-shallow": "^0.2.0",
-    "kind-of": "^0.1.2",
-    "moment": "^2.8.4"
+  "keywords": [
+    "compile",
+    "date",
+    "dates",
+    "handlebars",
+    "helper",
+    "helpers",
+    "moment",
+    "render",
+    "template",
+    "templates",
+    "time"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "helper",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "handlebars-helper-moment",
+        "handlebars-helpers",
+        "helper-date",
+        "helper-dateformat",
+        "template-helpers"
+      ]
+    },
+    "reflinks": [
+      "assemble",
+      "generate",
+      "generate-helper",
+      "handlebars",
+      "helpers",
+      "lodash",
+      "templates",
+      "underscore",
+      "update",
+      "verb",
+      "verb-generate-readme"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
