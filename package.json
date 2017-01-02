@@ -1,7 +1,7 @@
 {
   "name": "helper-moment",
   "description": "Template helper for formatting dates with moment.js. Works with Handlebars, Lo-Dash or any template engine that supports helper functions.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/helpers/helper-moment",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "helpers/helper-moment",
