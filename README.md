@@ -1,102 +1,78 @@
-# helper-moment [![NPM version](https://badge.fury.io/js/helper-moment.svg)](http://badge.fury.io/js/helper-moment)
+# helper-moment [![NPM version](https://img.shields.io/npm/v/helper-moment.svg?style=flat)](https://www.npmjs.com/package/helper-moment) [![NPM monthly downloads](https://img.shields.io/npm/dm/helper-moment.svg?style=flat)](https://npmjs.org/package/helper-moment)  [![NPM total downloads](https://img.shields.io/npm/dt/helper-moment.svg?style=flat)](https://npmjs.org/package/helper-moment) [![Linux Build Status](https://img.shields.io/travis/helpers/helper-moment.svg?style=flat&label=Travis)](https://travis-ci.org/helpers/helper-moment)
 
 > Template helper for formatting dates with moment.js. Works with Handlebars, Lo-Dash or any template engine that supports helper functions.
 
-## Install with [npm](npmjs.org)
+## Install
 
-```bash
-npm i helper-moment --save
+Install globally with [npm](https://www.npmjs.com/)
+
+```sh
+$ npm install --global helper-moment
 ```
 
-## Run tests
+## Usage
 
-```bash
-npm test
+The main export is a function that can be called directly:
+
+```js
+var moment = require('helper-moment');
+console.log(moment());
+//=> 'January 02, 2017'
 ```
 
-## Register the helper
+## Examples
 
-> This should work with any engine, here are a few examples
+With Handlebars:
 
-### [template]
+```handlebars
+{{moment "YYYY"}}
+//=> 2017
+```
+
+### Usage with [assemble](https://github.com/assemble/assemble)
+
+_(This example also works for [verb](https://github.com/verbose/verb), [update](https://github.com/update/update), [generate](https://github.com/generate/generate), or any other lib based on the [templates](https://github.com/jonschlinkert/templates) library)_
 
 Register the helper for use with any template engine
 
 ```js
-template.helper('moment', require('helper-moment'));
-```
+var templates = require('templates');
+var app = templates();
 
-### [assemble]
+app.helper('moment', require('helper-moment'));
 
-To register the helper for use with [assemble] v0.6.x:
-
-```js
-assemble.helper('moment', require('helper-moment'));
-```
-
-### [verb]
-
-Register the helper for use with [verb]:
-
-```js
-var verb = require('verb');
-verb.helper('moment', require('helper-moment'));
-
-verb.task('default', function() {
-  verb.src('.verb*.md')
-    .pipe(verb.dest('./'));
+app.task('default', function() {
+  app.src('templates/*.md')
+    .pipe(app.dest('dist'));
 });
 ```
 
-### [handlebars]
+**Helper usage**
+
+Delimiters depend on the engine registered. For example, with Lo-Dash or Underscore templates:
+
+```js
+<%= moment("YYYY") %>
+//=> 2017
+```
+
+Or with Verb, which uses special delimiters to avoid delimiter collision when the documentation itself includes templates that should not render (like these docs):
+
+```js
+{%= moment("YYYY") %}
+//=> 2017
+```
+
+### Usage with [handlebars](http://www.handlebarsjs.com/)
+
+To use the helper directly with handlebars:
 
 ```js
 var handlebars = require('handlebars');
 handlebars.registerHelper('moment', require('helper-moment'));
 ```
 
-### [Lo-Dash] or [underscore]
-
-```js
-// as a mixin
-_.mixin({moment: momentHelper});
-_.template('<%= _.moment("YYYY") %>', {});
-//=> '2015'
-
-// passed on the context
-_.template('<%= moment("YYYY") %>', {moment: momentHelper});
-//=> '2015'
-
-// as an import
-var settings = {imports: {moment: momentHelper}};
-_.template('<%= moment("YYYY") %>', {}, settings);
-//=> '2015'
-```
-
-## Example usage
-
-With Handlebars:
-
-```handlebars
-{{moment "YYYY"}}
-//=> 2015
-```
-
-With Lo-Dash or Underscore:
-
-```js
-<%= moment("YYYY") %>
-//=> 2015
-```
-
-With Verb (lo-dash, with special delimiters to avoid delimiter collision in markdown docs):
-
-```js
-{%= moment('2015') %}
-//=> 2015
-```
-
-## Examples
+Template examples:
 
 ```handlebars
 {{moment date "YYYY"}}
@@ -121,34 +97,102 @@ With Verb (lo-dash, with special delimiters to avoid delimiter collision in mark
 {{moment}}
 ```
 
+### Usage with [lodash](https://lodash.com/) or [underscore](http://underscorejs.org)
 
-## Contributing
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/helpers/helper-moment/issues)
+Use directly with Lo-Dash or underscore:
 
-To request or contribute a helper to the [github.com/helpers][helpers] org, please read [this contributing guide][guide] to get started.
+```js
+var moment =  require('helper-moment');
 
-## Author
+// as a mixin
+_.mixin({moment: moment});
+_.template('<%= _.moment("YYYY") %>');
+//=> '2017'
+
+// or pass the helper on the context
+_.template('<%= moment("YYYY") %>')({moment: moment});
+//=> '2017'
+```
+
+To contribute a helper to the [github.com/helpers](https://github.com/fshost/helpers) org, follow these steps:
+
+### 1. Install the helper generator
+
+Install [generate](https://github.com/generate/generate) and [generate-helper][]:
+
+```sh
+npm install --global generate generate-helper
+```
+
+### 2. Generate your project
+
+To initialize the project, including documentation and unit tests, in the command line, run:
+
+```sh
+gen helper
+```
+
+### 3. Create a repo
+
+Create a repo on GitHub under your own account.
+
+### 4. Last, request a transfer
+
+Create an issue to [request a transfer](https://github.com/helpers/requests/issues/new) to the [helpers](https://github.com/helpers) org.
+
+## About
+
+### Related projects
+
+* [handlebars-helper-moment](https://www.npmjs.com/package/handlebars-helper-moment): A helper to master time! Combining the powers of Assemble, Handlebars.js and Moment.js. This helper… [more](https://github.com/assemble/handlebars-helper-moment) | [homepage](https://github.com/assemble/handlebars-helper-moment "A helper to master time! Combining the powers of Assemble, Handlebars.js and Moment.js. This helper leverages Moment.js to provide ultimate control over manipulating time and dates in your templates.")
+* [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers): More than 130 Handlebars helpers in ~20 categories. Helpers can be used with Assemble, Generate… [more](https://github.com/assemble/handlebars-helpers) | [homepage](https://github.com/assemble/handlebars-helpers "More than 130 Handlebars helpers in ~20 categories. Helpers can be used with Assemble, Generate, Verb, Ghost, gulp-handlebars, grunt-handlebars, consolidate, or any node.js/Handlebars project.")
+* [helper-date](https://www.npmjs.com/package/helper-date): Format dates with date.js and moment.js. Uses date.js to parse human readable date phrases, and… [more](https://github.com/helpers/helper-date) | [homepage](https://github.com/helpers/helper-date "Format dates with date.js and moment.js. Uses date.js to parse human readable date phrases, and moment to format the rendered output. Should work with any Handlebars, Lo-Dash, underscore, or any template engine that allows helper functions to be registere")
+* [helper-dateformat](https://www.npmjs.com/package/helper-dateformat): Template helper for adding formatted dates using node-dateformat. Works with Handlebars, Lo-Dash, underscore, or any… [more](https://github.com/helpers/helper-dateformat) | [homepage](https://github.com/helpers/helper-dateformat "Template helper for adding formatted dates using node-dateformat. Works with Handlebars, Lo-Dash, underscore, or any template engine that supports helper functions. Also compatible with verb, assemble and Template.")
+* [template-helpers](https://www.npmjs.com/package/template-helpers): Generic JavaScript helpers that can be used with any template engine. Handlebars, Lo-Dash, Underscore, or… [more](https://github.com/jonschlinkert/template-helpers) | [homepage](https://github.com/jonschlinkert/template-helpers "Generic JavaScript helpers that can be used with any template engine. Handlebars, Lo-Dash, Underscore, or any engine that supports helper functions.")
+
+### Contributing
+
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
+
+Please read the [contributing guide](.github/contributing.md) for avice on opening issues, pull requests, and coding standards.
+
+### Contributors
+
+| **Commits** | **Contributor** | 
+| --- | --- |
+| 3 | [jonschlinkert](https://github.com/jonschlinkert) |
+| 1 | [anglepoised](https://github.com/anglepoised) |
+
+### Building docs
+
+_(This document was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme) (a [verb](https://github.com/verbose/verb) generator), please don't edit the readme directly. Any changes to the readme must be made in [.verb.md](.verb.md).)_
+
+To generate the readme and API documentation with [verb](https://github.com/verbose/verb):
+
+```sh
+$ npm install -g verb verb-generate-readme && verb
+```
+
+### Running tests
+
+Install dev dependencies:
+
+```sh
+$ npm install -d && npm test
+```
+
+### Author
 
 **Jon Schlinkert**
- 
-+ [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
 
-## License
-Copyright (c) 2014 Jon Schlinkert  
-Released under the MIT license
+* [github/jonschlinkert](https://github.com/jonschlinkert)
+* [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+
+### License
+
+Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
+Released under the [MIT license](LICENSE).
 
 ***
 
-_This file was generated by [verb](https://github.com/assemble/verb) on December 06, 2014. To update, run `npm i -g verb && verb`._
-
-[assemble]: https://github.com/assemble/assemble
-[generator-verb]: https://github.com/assemble/generator-verb
-[handlebars-helpers]: https://github.com/assemble/handlebars-helpers/
-[handlebars]: https://github.com/wycats/handlebars.js/
-[helpers]: https://github.com/helpers
-[Lo-Dash]: https://lodash.com/
-[template]: https://github.com/jonschlinkert/template
-[underscore]: https://github.com/jashkenas/underscore
-[verb]: https://github.com/assemble/verb
-[guide]: https://github.com/helpers/requests
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.2.3, on January 02, 2017._
